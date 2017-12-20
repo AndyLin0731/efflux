@@ -64,7 +64,7 @@ public class ControlPacketDecoder implements ChannelUpstreamHandler {
         List<ControlPacket> controlPacketList = new ArrayList<ControlPacket>(2);
 
         // While there's data to read, keep on decoding.
-        while (buffer.readableBytes() > 0) {
+        while (buffer.readableBytes() > 0 && buffer.readableBytes() % 4 == 0) {
             try {
                 controlPacketList.add(ControlPacket.decode(buffer));
             } catch (Exception e1) {
